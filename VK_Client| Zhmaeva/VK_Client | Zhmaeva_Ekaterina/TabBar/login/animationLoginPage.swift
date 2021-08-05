@@ -29,7 +29,7 @@ extension LoginViewController {
     
     func gradientView() {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.white.cgColor, UIColor.blue.cgColor, UIColor.white.cgColor]
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.gray.cgColor]
         gradientLayer.locations = [0 as NSNumber, 3 as NSNumber]
         gradientLayer.startPoint = CGPoint.zero
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)

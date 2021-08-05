@@ -19,7 +19,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.backgroundColor = #colorLiteral(red: 0.7328519225, green: 0.7304715514, blue: 0.9999552369, alpha: 1)
+        collectionView.backgroundColor = #colorLiteral(red: 0.129396528, green: 0.1294215024, blue: 0.1293910444, alpha: 1)
         self.collectionView.reloadData()
     }
     

@@ -37,7 +37,7 @@ class HeaderView: UITableViewHeaderFooterView {
     func setup() {
         view = loadFromNib()
         guard let view = view else {return}
-        view.backgroundColor = #colorLiteral(red: 0.7791591287, green: 0.7800218463, blue: 1, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         view.frame = bounds
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)

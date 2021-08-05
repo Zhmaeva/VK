@@ -34,7 +34,7 @@ extension UniversalCell {
     
     func gradientView() {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.white.cgColor, UIColor.blue.cgColor, UIColor.white.cgColor]
+        gradientLayer.colors = [UIColor.white.cgColor, UIColor.systemGray.cgColor]
         gradientLayer.locations = [0 as NSNumber, 3 as NSNumber]
         gradientLayer.startPoint = CGPoint.zero
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)
@@ -42,22 +42,6 @@ extension UniversalCell {
         
         gradientLayer.frame = contentView.bounds
         contentView.layer.insertSublayer(gradientLayer, at: 0)
-
-    }
-}
-
-// не знаю как кастомизировать хэдэр
-extension HeaderView {
-    func gradientHeaderView() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.white.cgColor, UIColor.blue.cgColor, UIColor.white.cgColor]
-        gradientLayer.locations = [0 as NSNumber, 3 as NSNumber]
-        gradientLayer.startPoint = CGPoint.zero
-        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
-        gradientLayer.opacity = 90
-        
-        gradientLayer.frame = backViewHeader.bounds
-        backViewHeader.layer.insertSublayer(gradientLayer, at: 0)
 
     }
 }

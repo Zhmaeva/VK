@@ -16,7 +16,7 @@ class MyGroupTableViewController: UITableViewController {
     
     // обновление ячеек перед появлением
     override func viewWillAppear(_ animated: Bool) {
-        tableView.backgroundColor = #colorLiteral(red: 0.771590054, green: 0.7699093819, blue: 0.9986669421, alpha: 1)
+        tableView.backgroundColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         self.tableView.reloadData()
     }
 

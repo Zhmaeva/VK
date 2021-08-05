@@ -26,7 +26,7 @@ class AllFriendsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        myFriendsTableView.backgroundColor = #colorLiteral(red: 0.6934880018, green: 0.6909019351, blue: 1, alpha: 1)
+        myFriendsTableView.backgroundColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         myFriendsTableView.reloadData()
     }
 

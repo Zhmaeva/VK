@@ -21,7 +21,7 @@ class AllGroupsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        allGroupTableView.backgroundColor = #colorLiteral(red: 0.7867411971, green: 0.7865689993, blue: 1, alpha: 1)
+        allGroupTableView.backgroundColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         allGroupTableView.reloadData()
     }
     

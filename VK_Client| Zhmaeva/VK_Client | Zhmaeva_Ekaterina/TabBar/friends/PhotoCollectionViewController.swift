@@ -35,7 +35,7 @@ class PhotoCollectionViewController: UICollectionViewController {
            let dst = segue.destination as? GalleryViewController,
            let selectedPhoto = sender as? Int {
             dst.gallery = photoArray
-            dst.nextIndex = selectedPhoto
+            dst.currentIndex = selectedPhoto
         }
     }
     

@@ -8,7 +8,7 @@
 import UIKit
 
 class GalleryViewController: UIViewController {
-
+    
     @IBOutlet weak var backViewGallery: UIView!
     @IBOutlet weak var backgroundGallery: UIImageView!
     @IBOutlet weak var fullPhoto: UIImageView!
@@ -16,46 +16,37 @@ class GalleryViewController: UIViewController {
     
     var gallery = [UIImage]()
     
-    var nextIndex = 0
+    var currentIndex = 0
     var currentPhoto: UIImageView?
-    let originalSize: CGFloat = 400
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        showNextPhoto()
-    }
         
-    func showNextPhoto() {
+        showCurrentPhoto()
+        swipePhoto()
+        
+    }
+    
+    func createPhoto() -> UIImageView? {
+        guard currentIndex < gallery.count else {return nil}
+        guard currentIndex >= 0 else {return nil}
+        let photoView = UIImageView(image: gallery[currentIndex])
+        photoView.frame = UIScreen.main.bounds
+        photoView.backgroundColor = .black
+        photoView.contentMode = .scaleAspectFit
+        photoView.isUserInteractionEnabled = true
+        
+        return photoView
+    }
+    
+    func showCurrentPhoto() {
         if let newPhoto = createPhoto() {
             currentPhoto = newPhoto
             showPhoto(newPhoto)
         } else {
-            nextIndex = 0
-            showNextPhoto()
+            currentIndex = 0
+            showCurrentPhoto()
         }
-    }
-
-    
-    func createPhoto() -> UIImageView? {
-        guard nextIndex < gallery.count else {return nil}
-        let photoView = UIImageView(image: gallery[nextIndex])
-        photoView.frame = CGRect(x: self.view.frame.width,
-                                 y: self.view.center.y - (originalSize / 2),
-                                 width: originalSize,
-                                 height: originalSize)
-        // shadow
-        photoView.layer.shadowColor = UIColor.black.cgColor
-        photoView.layer.shadowOpacity = 0
-        photoView.layer.shadowOffset = .zero
-        photoView.layer.shadowRadius = 10
-        
-        // frame
-        photoView.layer.borderWidth = 2
-        photoView.layer.borderColor = UIColor.darkGray.cgColor
-        
-        nextIndex += 1
-        return photoView
     }
     
     func showPhoto(_ photoView: UIImageView) {
@@ -65,6 +56,44 @@ class GalleryViewController: UIViewController {
             photoView.center = self.view.center
         }
     }
-
-
+    
+    func swipePhoto() {
+        let swipeRight = UISwipeGestureRecognizer(target: self,
+                                                  action: #selector(self.showNextPhoto))
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self,
+                                                 action: #selector(self.showNextPhoto))
+        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
+        self.view.addGestureRecognizer(swipeLeft)
+    }
+    
+    @objc func showNextPhoto(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer{
+            switch swipeGesture.direction {
+                case UISwipeGestureRecognizer.Direction.left:
+                    if let newPhoto = createPhoto() {
+                        currentPhoto = newPhoto
+                        showPhoto(newPhoto)
+                        let nextIndex = currentIndex + 1
+                        if nextIndex < gallery.count {
+                            currentIndex = nextIndex
+                        } else { return }
+                    }
+                case UISwipeGestureRecognizer.Direction.right:
+                    if let newPhoto = createPhoto() {
+                        currentPhoto = newPhoto
+                        showPhoto(newPhoto)
+                        let nextIndex = currentIndex - 1
+                        if nextIndex < gallery.count {
+                            currentIndex = nextIndex
+                        } else { return }
+                    }
+                default:
+                    break
+            }
+        }
+    }
 }

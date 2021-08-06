@@ -8,25 +8,25 @@
 import UIKit
 
 class GalleryViewController: UIViewController {
-    
+
     @IBOutlet weak var backViewGallery: UIView!
     @IBOutlet weak var backgroundGallery: UIImageView!
     @IBOutlet weak var fullPhoto: UIImageView!
-    
-    
+
+
     var gallery = [UIImage]()
-    
+
     var currentIndex = 0
     var currentPhoto: UIImageView?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         showCurrentPhoto()
-        swipePhoto()
+        swipePhotos()
         
     }
-    
+
     func createPhoto() -> UIImageView? {
         guard currentIndex < gallery.count else {return nil}
         guard currentIndex >= 0 else {return nil}
@@ -38,17 +38,17 @@ class GalleryViewController: UIViewController {
         
         return photoView
     }
-    
+
     func showCurrentPhoto() {
         if let newPhoto = createPhoto() {
             currentPhoto = newPhoto
             showPhoto(newPhoto)
         } else {
             currentIndex = 0
-            showCurrentPhoto()
+            return
         }
     }
-    
+
     func showPhoto(_ photoView: UIImageView) {
         self.view.addSubview(photoView)
         
@@ -56,8 +56,8 @@ class GalleryViewController: UIViewController {
             photoView.center = self.view.center
         }
     }
-    
-    func swipePhoto() {
+
+    func swipePhotos() {
         let swipeRight = UISwipeGestureRecognizer(target: self,
                                                   action: #selector(self.showNextPhoto))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
@@ -68,29 +68,37 @@ class GalleryViewController: UIViewController {
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(swipeLeft)
     }
-    
+
+    func swipeLeft() {
+        if let newPhoto = createPhoto() {
+            currentPhoto = newPhoto
+            showPhoto(newPhoto)
+            let nextIndex = currentIndex + 1
+            if nextIndex < gallery.count {
+                currentIndex = nextIndex
+            } else { return }
+        }
+    }
+
+    func swipeRight() {
+        if let newPhoto = createPhoto() {
+            currentPhoto = newPhoto
+            showPhoto(newPhoto)
+            let nextIndex = currentIndex - 1
+            if nextIndex < gallery.count {
+                currentIndex = nextIndex
+            } else { return }
+        }
+    }
+
     @objc func showNextPhoto(gesture: UIGestureRecognizer) {
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer{
             switch swipeGesture.direction {
                 case UISwipeGestureRecognizer.Direction.left:
-                    if let newPhoto = createPhoto() {
-                        currentPhoto = newPhoto
-                        showPhoto(newPhoto)
-                        let nextIndex = currentIndex + 1
-                        if nextIndex < gallery.count {
-                            currentIndex = nextIndex
-                        } else { return }
-                    }
+                    swipeLeft()
                 case UISwipeGestureRecognizer.Direction.right:
-                    if let newPhoto = createPhoto() {
-                        currentPhoto = newPhoto
-                        showPhoto(newPhoto)
-                        let nextIndex = currentIndex - 1
-                        if nextIndex < gallery.count {
-                            currentIndex = nextIndex
-                        } else { return }
-                    }
+                   swipeRight()
                 default:
                     break
             }

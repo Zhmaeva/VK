@@ -11,9 +11,8 @@ final class Session {
 
     static let instance = Session()
 
-    var token: String = ""
+    var token: String = String()
     var userId: Int = 0
 
     private init() {}
 }
-

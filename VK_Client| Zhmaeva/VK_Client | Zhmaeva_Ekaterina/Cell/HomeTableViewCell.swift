@@ -26,10 +26,10 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsCount: UILabel!
     
     
-    typealias onUpdateCallBack = (_ news: News)  -> Void
+    typealias UpdateCallback = (_ news: News)  -> Void
     
     var news: News? = Optional.none
-    var onUpdate: onUpdateCallBack? = Optional.none
+    var onUpdate: UpdateCallback? = Optional.none
     
     func setup() {
         backViewPhoto.layer.cornerRadius = 50
@@ -60,7 +60,7 @@ class HomeTableViewCell: UITableViewCell {
     }
 
     
-    func configure(news: News, onUpdate: @escaping onUpdateCallBack) {
+    func configure(news: News, onUpdate: @escaping UpdateCallback) {
         titleOrName.text = news.title
         descriptionNews.text = news.description
         photoFriendsAndGroups.image = news.avatar

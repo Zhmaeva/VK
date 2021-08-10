@@ -33,6 +33,7 @@
 		C197596B267CCB1700B3FD81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1975969267CCB1700B3FD81 /* Main.storyboard */; };
 		C197596D267CCB1800B3FD81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C197596C267CCB1800B3FD81 /* Assets.xcassets */; };
 		C1975970267CCB1800B3FD81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C197596E267CCB1800B3FD81 /* LaunchScreen.storyboard */; };
+		C197CE4626BD2EFF000C629F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197CE4526BD2EFF000C629F /* Session.swift */; };
 		C1BE4DA2269B9BC0009ED5ED /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DA1269B9BC0009ED5ED /* GalleryViewController.swift */; };
 		C1BE4DA4269CA415009ED5ED /* animationMyFriendsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DA3269CA415009ED5ED /* animationMyFriendsPage.swift */; };
 		C1BE4DAE26A4B418009ED5ED /* animationHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DAD26A4B418009ED5ED /* animationHome.swift */; };
@@ -68,6 +69,7 @@
 		C197596C267CCB1800B3FD81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C197596F267CCB1800B3FD81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1975971267CCB1800B3FD81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C197CE4526BD2EFF000C629F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		C1BE4DA1269B9BC0009ED5ED /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		C1BE4DA3269CA415009ED5ED /* animationMyFriendsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animationMyFriendsPage.swift; sourceTree = "<group>"; };
 		C1BE4DAD26A4B418009ED5ED /* animationHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animationHome.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 		C15F5BF32697163A00A29C12 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				C197CE4426BD2EDE000C629F /* Session (singleton) */,
 				C13007E526847F1700E56F2F /* Model */,
 				C13007ED2684909200E56F2F /* DataSources */,
 			);
@@ -250,6 +253,14 @@
 				C149256726864DAF005D7BCE /* Cell */,
 			);
 			path = "VK_Client | Zhmaeva_Ekaterina";
+			sourceTree = "<group>";
+		};
+		C197CE4426BD2EDE000C629F /* Session (singleton) */ = {
+			isa = PBXGroup;
+			children = (
+				C197CE4526BD2EFF000C629F /* Session.swift */,
+			);
+			path = "Session (singleton)";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +346,7 @@
 				C14925782687BB8C005D7BCE /* PhotoCell.swift in Sources */,
 				C1975964267CCB1700B3FD81 /* AppDelegate.swift in Sources */,
 				C138D5F1268E08FF00D6B495 /* AllGroupsViewController.swift in Sources */,
+				C197CE4626BD2EFF000C629F /* Session.swift in Sources */,
 				C149257126879029005D7BCE /* PersonDataSource.swift in Sources */,
 				C1BE4DAE26A4B418009ED5ED /* animationHome.swift in Sources */,
 				C138D5ED268DD10500D6B495 /* HomeTableViewController.swift in Sources */,

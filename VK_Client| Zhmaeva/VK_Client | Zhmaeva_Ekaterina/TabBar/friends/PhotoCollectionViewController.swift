@@ -15,7 +15,7 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     var photoArray = [UIImage]()
     
-    
+    private let photosApiClient = VkClient()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,7 +25,9 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        photosApiClient.getUserPhotos()
+
         // Register cell classes
         self.collectionView!.register(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
     }

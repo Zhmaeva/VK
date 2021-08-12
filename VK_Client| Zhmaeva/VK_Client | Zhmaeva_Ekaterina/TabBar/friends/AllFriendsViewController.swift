@@ -18,6 +18,7 @@ class AllFriendsViewController: UIViewController {
     
     var personsArray = [Person]()
     var searchResultArray = [Person]()
+    private let apiClient = VkClient()
     
     func configure(personsArray: [Person]) {
         self.personsArray = personsArray
@@ -32,6 +33,8 @@ class AllFriendsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        apiClient.getFriends()
         
         self.myFriendsTableView.register(UINib(nibName: "UniversalCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierUniversalCell)
         

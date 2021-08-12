@@ -16,8 +16,7 @@ class AllGroupsViewController: UIViewController {
     
     var allGroupArray = [Group]()
     var searchGroupArray = [Group]()
-    private let groupsApiClient = VkClient()
-
+    
     // MARK: - Create Group data source array
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,9 +27,7 @@ class AllGroupsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        groupsApiClient.getUserGroups()
-        groupsApiClient.getGroupSearch()
+        
         allGroupArray = setupGroup()
         
         self.allGroupTableView.register(UINib(nibName: "UniversalCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierUniversalCell)

@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 final class NetworkLayer {
 

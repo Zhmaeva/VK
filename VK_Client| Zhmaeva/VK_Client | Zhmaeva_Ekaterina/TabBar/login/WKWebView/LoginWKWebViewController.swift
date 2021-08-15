@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class LoginWKWebViewController: UIViewController {
+final class LoginWKWebViewController: UIViewController {
 
     @IBOutlet weak var loginWebView: WKWebView! {
         didSet {

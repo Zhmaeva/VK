@@ -102,7 +102,6 @@
 		C100A82C269AFEC7007E68B4 /* login */ = {
 			isa = PBXGroup;
 			children = (
-				C1A200C326C52883009410DB /* WebViewController */,
 				C1A200C126C52883009410DB /* WKWebView */,
 				C1975967267CCB1700B3FD81 /* LoginViewController.swift */,
 				C100A82D269AFF50007E68B4 /* animationLoginPage.swift */,
@@ -295,13 +294,6 @@
 			path = WKWebView;
 			sourceTree = "<group>";
 		};
-		C1A200C326C52883009410DB /* WebViewController */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WebViewController;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -351,9 +343,9 @@
 			);
 			mainGroup = C1975957267CCB1700B3FD81;
 			packageReferences = (
-				C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */,
-				C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
+				C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = C1975961267CCB1700B3FD81 /* Products */;
 			projectDirPath = "";
@@ -616,7 +608,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -624,7 +616,7 @@
 				minimumVersion = 5.4.3;
 			};
 		};
-		C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */ = {
+		C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -632,7 +624,7 @@
 				minimumVersion = 5.0.1;
 			};
 		};
-		C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -645,17 +637,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		C137C58726C91874006D4F70 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		C137C58A26C9190D006D4F70 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */;
+			package = C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
 		C137C58D26C9198F006D4F70 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

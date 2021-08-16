@@ -8,6 +8,8 @@
 import UIKit
 import WebKit
 
+// MARK: - LoginWKWebViewController
+
 final class LoginWKWebViewController: UIViewController {
 
     @IBOutlet weak var loginWebView: WKWebView! {

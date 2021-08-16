@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C100A82E269AFF50007E68B4 /* animationLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C100A82D269AFF50007E68B4 /* animationLoginPage.swift */; };
-		C137C58826C91874006D4F70 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C137C58726C91874006D4F70 /* Alamofire */; };
-		C137C58B26C9190D006D4F70 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C137C58A26C9190D006D4F70 /* SwiftyJSON */; };
+		C123F19E26CB05310028D2F8 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C123F19D26CB05310028D2F8 /* RealmSwift */; };
+		C123F1A026CB05310028D2F8 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C123F19F26CB05310028D2F8 /* Realm */; };
 		C137C58E26C9198F006D4F70 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C137C58D26C9198F006D4F70 /* Kingfisher */; };
 		C138D5ED268DD10500D6B495 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C138D5EC268DD10500D6B495 /* HomeTableViewController.swift */; };
 		C138D5EF268DD3EC00D6B495 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C138D5EE268DD3EC00D6B495 /* HomeTableViewCell.swift */; };
@@ -90,9 +90,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C123F1A026CB05310028D2F8 /* Realm in Frameworks */,
+				C123F19E26CB05310028D2F8 /* RealmSwift in Frameworks */,
 				C137C58E26C9198F006D4F70 /* Kingfisher in Frameworks */,
-				C137C58B26C9190D006D4F70 /* SwiftyJSON in Frameworks */,
-				C137C58826C91874006D4F70 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +112,8 @@
 		C13007EA26847FF200E56F2F /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				C149256C26878F48005D7BCE /* MainTabBarController.swift */,
+				C149256726864DAF005D7BCE /* Cell */,
+				C1D997BB26CAF31D0027F140 /* tabbar */,
 				C100A82C269AFEC7007E68B4 /* login */,
 				C15F5BEA2696515E00A29C12 /* friends */,
 				C15F5BE92696514900A29C12 /* groups */,
@@ -122,12 +123,13 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		C13007EC268481BF00E56F2F /* Main */ = {
+		C13007EC268481BF00E56F2F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				C197596E267CCB1800B3FD81 /* LaunchScreen.storyboard */,
 				C1975969267CCB1700B3FD81 /* Main.storyboard */,
 			);
-			path = Main;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		C149256726864DAF005D7BCE /* Cell */ = {
@@ -193,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				C1975971267CCB1800B3FD81 /* Info.plist */,
-				C197596E267CCB1800B3FD81 /* LaunchScreen.storyboard */,
 				C197596C267CCB1800B3FD81 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -220,10 +221,10 @@
 		C1975962267CCB1700B3FD81 /* VK_Client | Zhmaeva_Ekaterina */ = {
 			isa = PBXGroup;
 			children = (
+				C1A200A626C527D1009410DB /* Start layer */,
 				C1A200A526C527D1009410DB /* Core */,
-				C13007EC268481BF00E56F2F /* Main */,
 				C13007EA26847FF200E56F2F /* TabBar */,
-				C149256726864DAF005D7BCE /* Cell */,
+				C13007EC268481BF00E56F2F /* Storyboards */,
 			);
 			path = "VK_Client | Zhmaeva_Ekaterina";
 			sourceTree = "<group>";
@@ -231,7 +232,6 @@
 		C1A200A526C527D1009410DB /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C1A200A626C527D1009410DB /* Start layer */,
 				C1A200A926C527D1009410DB /* API layer */,
 				C1A200AC26C527D1009410DB /* Data Sources */,
 				C1A200B026C527D1009410DB /* Network layer */,
@@ -294,6 +294,14 @@
 			path = WKWebView;
 			sourceTree = "<group>";
 		};
+		C1D997BB26CAF31D0027F140 /* tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				C149256C26878F48005D7BCE /* MainTabBarController.swift */,
+			);
+			path = tabbar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -311,9 +319,9 @@
 			);
 			name = "VK_Client | Zhmaeva_Ekaterina";
 			packageProductDependencies = (
-				C137C58726C91874006D4F70 /* Alamofire */,
-				C137C58A26C9190D006D4F70 /* SwiftyJSON */,
 				C137C58D26C9198F006D4F70 /* Kingfisher */,
+				C123F19D26CB05310028D2F8 /* RealmSwift */,
+				C123F19F26CB05310028D2F8 /* Realm */,
 			);
 			productName = "VK_Client | Zhmaeva_Ekaterina";
 			productReference = C1975960267CCB1700B3FD81 /* VK_Client | Zhmaeva_Ekaterina.app */;
@@ -343,9 +351,8 @@
 			);
 			mainGroup = C1975957267CCB1700B3FD81;
 			packageReferences = (
-				C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C123F19C26CB05310028D2F8 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = C1975961267CCB1700B3FD81 /* Products */;
 			projectDirPath = "";
@@ -608,20 +615,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		C123F19C26CB05310028D2F8 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.4.3;
-			};
-		};
-		C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
+				minimumVersion = 10.12.0;
 			};
 		};
 		C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -635,15 +634,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		C137C58726C91874006D4F70 /* Alamofire */ = {
+		C123F19D26CB05310028D2F8 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C137C58626C91874006D4F70 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = C123F19C26CB05310028D2F8 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
-		C137C58A26C9190D006D4F70 /* SwiftyJSON */ = {
+		C123F19F26CB05310028D2F8 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C137C58926C9190D006D4F70 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
+			package = C123F19C26CB05310028D2F8 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
 		};
 		C137C58D26C9198F006D4F70 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

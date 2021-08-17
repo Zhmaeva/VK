@@ -31,7 +31,7 @@ final class VkClient {
         return url
     }
 
-    func getFriends() {
+    func getFriends(complition: @escaping(Result<[User], Error>) -> Void) {
 
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
@@ -40,24 +40,32 @@ final class VkClient {
         urlComponents.queryItems = [
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: version),
-            URLQueryItem(name: "fields", value: "nickname")
+            URLQueryItem(name: "count", value: "10"),
+            URLQueryItem(name: "fields", value: "nickname, photo_200_orig")
         ]
         guard let url = urlComponents.url else { return }
 
         let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
+            if let error = error {
+                complition(.failure(error))
+            }
+
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data)
-                    print(json)
-                } catch {
-                    print(error)
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                    let json = try decoder.decode(Response<UserResponse>.self, from: data)
+                    complition(.success(json.response.items))
+                } catch let error {
+                    complition(.failure(error))
                 }
             }
         }
         dataTask.resume()
     }
 
-    func getUserPhotos() {
+    func getUserPhotos(id: Int) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.vk.com"
@@ -65,7 +73,7 @@ final class VkClient {
         urlComponents.queryItems = [
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: version),
-            URLQueryItem(name: "owner_id", value: Session.shared.userId),
+            URLQueryItem(name: "owner_id", value: String(id)),
             URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "count", value: "100"),
             URLQueryItem(name: "photo_sizes", value: "1")

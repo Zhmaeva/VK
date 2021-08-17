@@ -37,10 +37,12 @@
 		C1A200BB26C527D1009410DB /* GroupDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AE26C527D1009410DB /* GroupDataSource.swift */; };
 		C1A200BC26C527D1009410DB /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AF26C527D1009410DB /* NewsDataSource.swift */; };
 		C1A200BD26C527D1009410DB /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B126C527D1009410DB /* NetworkLayer.swift */; };
-		C1A200BE26C527D1009410DB /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B326C527D1009410DB /* Person.swift */; };
+		C1A200BE26C527D1009410DB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B326C527D1009410DB /* User.swift */; };
 		C1A200BF26C527D1009410DB /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B426C527D1009410DB /* Group.swift */; };
 		C1A200C026C527D1009410DB /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B526C527D1009410DB /* News.swift */; };
 		C1A200C426C52883009410DB /* LoginWKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200C226C52883009410DB /* LoginWKWebViewController.swift */; };
+		C1B1029726CC028D00973791 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B1029626CC028D00973791 /* Person.swift */; };
+		C1B1029926CC121E00973791 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B1029826CC121E00973791 /* Response.swift */; };
 		C1BE4DA2269B9BC0009ED5ED /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DA1269B9BC0009ED5ED /* GalleryViewController.swift */; };
 		C1BE4DA4269CA415009ED5ED /* animationMyFriendsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DA3269CA415009ED5ED /* animationMyFriendsPage.swift */; };
 		C1BE4DAE26A4B418009ED5ED /* animationHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DAD26A4B418009ED5ED /* animationHome.swift */; };
@@ -76,10 +78,12 @@
 		C1A200AE26C527D1009410DB /* GroupDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDataSource.swift; sourceTree = "<group>"; };
 		C1A200AF26C527D1009410DB /* NewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDataSource.swift; sourceTree = "<group>"; };
 		C1A200B126C527D1009410DB /* NetworkLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
-		C1A200B326C527D1009410DB /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		C1A200B326C527D1009410DB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C1A200B426C527D1009410DB /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		C1A200B526C527D1009410DB /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		C1A200C226C52883009410DB /* LoginWKWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWKWebViewController.swift; sourceTree = "<group>"; };
+		C1B1029626CC028D00973791 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		C1B1029826CC121E00973791 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		C1BE4DA1269B9BC0009ED5ED /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		C1BE4DA3269CA415009ED5ED /* animationMyFriendsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animationMyFriendsPage.swift; sourceTree = "<group>"; };
 		C1BE4DAD26A4B418009ED5ED /* animationHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animationHome.swift; sourceTree = "<group>"; };
@@ -279,9 +283,11 @@
 		C1A200B226C527D1009410DB /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				C1A200B326C527D1009410DB /* Person.swift */,
+				C1A200B326C527D1009410DB /* User.swift */,
 				C1A200B426C527D1009410DB /* Group.swift */,
 				C1A200B526C527D1009410DB /* News.swift */,
+				C1B1029626CC028D00973791 /* Person.swift */,
+				C1B1029826CC121E00973791 /* Response.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -384,15 +390,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1A200BE26C527D1009410DB /* Person.swift in Sources */,
+				C1A200BE26C527D1009410DB /* User.swift in Sources */,
 				C1A200C426C52883009410DB /* LoginWKWebViewController.swift in Sources */,
 				C149257D26889BB9005D7BCE /* MyGroupTableViewController.swift in Sources */,
 				C1975968267CCB1700B3FD81 /* LoginViewController.swift in Sources */,
+				C1B1029926CC121E00973791 /* Response.swift in Sources */,
 				C149256A26864E31005D7BCE /* UniversalCell.swift in Sources */,
 				C15F5BED2696ED2500A29C12 /* MessagesViewController.swift in Sources */,
 				C1BE4DA4269CA415009ED5ED /* animationMyFriendsPage.swift in Sources */,
 				C149256D26878F48005D7BCE /* MainTabBarController.swift in Sources */,
 				C14925782687BB8C005D7BCE /* PhotoCell.swift in Sources */,
+				C1B1029726CC028D00973791 /* Person.swift in Sources */,
 				C138D5F1268E08FF00D6B495 /* AllGroupsViewController.swift in Sources */,
 				C1BE4DAE26A4B418009ED5ED /* animationHome.swift in Sources */,
 				C138D5ED268DD10500D6B495 /* HomeTableViewController.swift in Sources */,

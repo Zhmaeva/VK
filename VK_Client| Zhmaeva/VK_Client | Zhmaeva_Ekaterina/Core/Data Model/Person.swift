@@ -1,18 +1,16 @@
+////
+////  Person.swift
+////  VK_Client | Zhmaeva_Ekaterina
+////
+////  Created by Catherine on 17.08.2021.
+////
 //
-//  Person.swift
-//  VK_Client | Zhmaeva_Ekaterina
+//import Foundation
+//import UIKit
 //
-//  Created by Catherine on 24.06.2021.
+//struct Person {
 //
-
-import Foundation
-import UIKit
-
-struct Person {
-
-    var name: String
-    var photo: UIImage
-    var photoArray: [UIImage]
-}
-
-
+//    var name: String
+//    var photo: UIImage
+//    var photoArray: [UIImage]
+//}

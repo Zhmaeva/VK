@@ -15,6 +15,7 @@ class UniversalCell: UITableViewCell {
 
 
     var savedAnyObject: Any?
+    let network = NetworkLayer()
 
 
     func setup() {
@@ -58,11 +59,22 @@ class UniversalCell: UITableViewCell {
     }
 
 
-    func configure(user: Person) {
+    func configure(user: User) {
         gradientView()
         savedAnyObject = user
-        titleLabel.text = user.name
-        pictureImageView.image = user.photo
+        titleLabel.text = "\(user.firstName) \(user.lastName)"
+
+        network.getImage(imageUrl: user.photo200Orig) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self.pictureImageView.image = UIImage(data: image)
+                    }
+            }
+        }
     }
 
 

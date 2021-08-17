@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct Response<T: Codable>: Codable {
-    let response: T
+struct ResponseWrapper<T: Decodable>: Decodable {
+    let items: [T]
+}
+
+struct Response<T: Decodable>: Decodable {
+    let response: ResponseWrapper<T>
 }

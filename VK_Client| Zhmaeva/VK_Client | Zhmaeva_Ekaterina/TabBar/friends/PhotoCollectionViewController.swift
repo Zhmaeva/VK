@@ -13,7 +13,9 @@ private let segueToGallery = "fromCollectionPhotoToGallery"
 
 class PhotoCollectionViewController: UICollectionViewController {
     
-    var photoArray = [UIImage]()
+    var userId: Int = -1
+    var photosArray = [Photo]()
+
     
     private let photosApiClient = VkClient()
     
@@ -26,7 +28,19 @@ class PhotoCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        photosApiClient.getUserPhotos()
+        photosApiClient.getUserPhotos(userId: userId) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let photos):
+                    DispatchQueue.main.async {
+                        self.photosArray = photos
+                        self.collectionView.reloadData()
+                    }
+            }
+        }
 
         // Register cell classes
         self.collectionView!.register(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
@@ -36,8 +50,8 @@ class PhotoCollectionViewController: UICollectionViewController {
         if segue.identifier == segueToGallery,
            let dst = segue.destination as? GalleryViewController,
            let selectedPhoto = sender as? Int {
-            dst.gallery = photoArray
-            dst.currentIndex = selectedPhoto
+//            dst.gallery = photoArray
+//            dst.currentIndex = selectedPhoto
         }
     }
     
@@ -54,13 +68,13 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return photoArray.count
+        return photosArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCell else {return UICollectionViewCell()}
         
-        cell.configure(image: photoArray[indexPath.item])
+        cell.configure(image: photosArray[indexPath.item])
         
         return cell
     }

@@ -104,7 +104,7 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
         if segue.identifier == segueFromFriendsToPhoto,
            let dst = segue.destination as? PhotoCollectionViewController,
            let user = sender as? User {
-            // dst.photoArray = user.photoArray
+            dst.userId = user.id
         }
     }
 

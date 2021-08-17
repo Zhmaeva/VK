@@ -9,6 +9,7 @@ import Foundation
 
 final class VkClient {
 
+    private let network = NetworkLayer()
     private let version = "5.131"
 
     func getAuthUrl() -> URL? {
@@ -45,27 +46,10 @@ final class VkClient {
         ]
         guard let url = urlComponents.url else { return }
 
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
-            if let error = error {
-                complition(.failure(error))
-            }
-
-            if let data = data {
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-                    let json = try decoder.decode(Response<UserResponse>.self, from: data)
-                    complition(.success(json.response.items))
-                } catch let error {
-                    complition(.failure(error))
-                }
-            }
-        }
-        dataTask.resume()
+        network.sendRequest(url: url, complition: complition)
     }
 
-    func getUserPhotos(id: Int) {
+    func getUserPhotos(userId: Int, complition: @escaping(Result<[Photo], Error>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.vk.com"
@@ -73,24 +57,15 @@ final class VkClient {
         urlComponents.queryItems = [
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: version),
-            URLQueryItem(name: "owner_id", value: String(id)),
+            URLQueryItem(name: "owner_id", value: String(userId)),
             URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "count", value: "100"),
             URLQueryItem(name: "photo_sizes", value: "1")
         ]
         guard let url = urlComponents.url else { return }
 
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data)
-                    print(json)
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        dataTask.resume()
+        network.sendRequest(url: url, complition: complition)
+
     }
 
     func getUserGroups() {

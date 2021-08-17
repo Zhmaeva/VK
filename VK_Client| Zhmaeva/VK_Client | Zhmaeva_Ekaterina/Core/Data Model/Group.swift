@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK: - Group
 
 struct Group {
 

@@ -9,17 +9,9 @@ import Foundation
 
 // MARK: - User
 
-struct User: Codable {
-
+struct User: Decodable {
     let id: Int
     let firstName: String
     let lastName: String
     let photo200Orig: String
-
 }
-
-struct UserResponse: Codable {
-    let items: [User]
-}
-
-

@@ -6,13 +6,11 @@
 //
 
 import Foundation
-import UIKit
 
-
-struct Group {
-
-    let header: String
-    let icon: UIImage
+struct Group: Decodable {
+    let id: Int
+    let name: String
+    let screenName: String
+    let type: String
+    let photo200: String
 }
-
-

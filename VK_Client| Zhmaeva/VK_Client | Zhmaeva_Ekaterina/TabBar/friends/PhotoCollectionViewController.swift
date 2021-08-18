@@ -59,7 +59,7 @@ final class PhotoCollectionViewController: UICollectionViewController {
         if segue.identifier == segueToGallery,
            let dst = segue.destination as? GalleryViewController,
            let selectedPhoto = sender as? Int {
-           // dst.gallery = photosArray
+            dst.gallery = photosArray
             dst.currentIndex = selectedPhoto
         }
     }

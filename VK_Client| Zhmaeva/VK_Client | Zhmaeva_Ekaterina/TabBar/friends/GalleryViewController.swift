@@ -13,9 +13,8 @@ final class GalleryViewController: UIViewController {
     @IBOutlet weak var backgroundGallery: UIImageView!
     @IBOutlet weak var fullPhoto: UIImageView!
 
-
-    var gallery = [UIImage]()
-    var gallary = [Photo]()
+    let network = NetworkLayer()
+    var gallery = [Photo]()
 
     var currentIndex = 0
     var currentPhoto: UIImageView?
@@ -28,14 +27,40 @@ final class GalleryViewController: UIViewController {
         
     }
 
+
+    func getPhotoMaxSizeUrl(photo: Photo) -> String {
+        var maxSize = photo.sizes[0]
+        for item in photo.sizes {
+            if item.width > maxSize.width {
+                maxSize = item
+            }
+        }
+
+        return maxSize.url
+    }
+
     func createPhoto() -> UIImageView? {
         guard currentIndex < gallery.count else {return nil}
         guard currentIndex >= 0 else {return nil}
-        let photoView = UIImageView(image: gallery[currentIndex])
+        let photoView = UIImageView()
         photoView.frame = UIScreen.main.bounds
         photoView.backgroundColor = .black
         photoView.contentMode = .scaleAspectFit
         photoView.isUserInteractionEnabled = true
+
+        let photoMaxSizeUrl = getPhotoMaxSizeUrl(photo: gallery[currentIndex])
+
+        network.getImage(imageUrl: photoMaxSizeUrl) { [weak photoView] result in
+            guard let photoView = photoView else { return }
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        photoView.image = UIImage(data: image)
+                    }
+            }
+        }
 
         return photoView
     }

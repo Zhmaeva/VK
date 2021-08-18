@@ -137,6 +137,9 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
                 resultArray.append(nameLetter)
             }
         }
+
+        resultArray.sort()
+
         return resultArray
     }
     

@@ -11,10 +11,10 @@ import Foundation
 
 struct Photo: Decodable {
     let id: Int
-    let sizes: [Sizes]
+    let sizes: [Size]
 }
 
-struct Sizes: Decodable {
+struct Size: Decodable {
     let height: Int
     let width: Int
     let url: String

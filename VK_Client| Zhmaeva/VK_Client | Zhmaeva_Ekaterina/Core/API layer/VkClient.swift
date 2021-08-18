@@ -51,7 +51,7 @@ final class VkClient {
         urlComponents.queryItems = [
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: version),
-            URLQueryItem(name: "count", value: "10"),
+            //URLQueryItem(name: "count", value: "10"),
             URLQueryItem(name: "fields", value: "nickname, photo_200_orig")
         ]
         guard let url = urlComponents.url else { return }

@@ -397,6 +397,7 @@
 				C138D5F1268E08FF00D6B495 /* AllGroupsViewController.swift in Sources */,
 				C1BE4DAE26A4B418009ED5ED /* animationHome.swift in Sources */,
 				C138D5ED268DD10500D6B495 /* HomeTableViewController.swift in Sources */,
+				C1A200BA26C527D1009410DB /* PersonDataSource.swift in Sources */,
 				C1BE4DA2269B9BC0009ED5ED /* GalleryViewController.swift in Sources */,
 				C1A200BD26C527D1009410DB /* NetworkLayer.swift in Sources */,
 				C1A200B826C527D1009410DB /* Session.swift in Sources */,

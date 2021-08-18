@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GalleryViewController: UIViewController {
+final class GalleryViewController: UIViewController {
 
     @IBOutlet weak var backViewGallery: UIView!
     @IBOutlet weak var backgroundGallery: UIImageView!
@@ -15,6 +15,7 @@ class GalleryViewController: UIViewController {
 
 
     var gallery = [UIImage]()
+    var gallary = [Photo]()
 
     var currentIndex = 0
     var currentPhoto: UIImageView?
@@ -35,7 +36,7 @@ class GalleryViewController: UIViewController {
         photoView.backgroundColor = .black
         photoView.contentMode = .scaleAspectFit
         photoView.isUserInteractionEnabled = true
-        
+
         return photoView
     }
 

@@ -7,21 +7,29 @@
 
 import UIKit
 
-class AllFriendsViewController: UIViewController {
+// MARK: - AllFriendsViewController
+
+final class AllFriendsViewController: UIViewController {
 
     @IBOutlet weak var myFriendsTableView: UITableView!
     @IBOutlet weak var searchFriends: UISearchBar!
 
-    
-    let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
-    let segueFromFriendsToPhoto = "fromFriendsTableViewToPhotoFriendsCollectionViewSegue"
-    
+    // MARK: - Public propertys
+
     var personsArray = [User]()
     var searchResultArray = [User]()
+
+    // MARK: - Private propertys
+
+    private let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
+    private let segueFromFriendsToPhoto = "fromFriendsTableViewToPhotoFriendsCollectionViewSegue"
     private let apiClient = VkClient()
-    
+
+    // MARK: - Public methods
+
     func configure() {
     }
+
 
     func loadData() {
         apiClient.getFriends { [weak self] result in
@@ -39,6 +47,7 @@ class AllFriendsViewController: UIViewController {
         }
     }
 
+    // MARK: - Life circle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +60,10 @@ class AllFriendsViewController: UIViewController {
 
         loadData()
     }
+
 }
 
+// MARK: - UISearchBarDelegate
 
 extension AllFriendsViewController: UISearchBarDelegate  {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -65,14 +76,10 @@ extension AllFriendsViewController: UISearchBarDelegate  {
         }
         myFriendsTableView.reloadData()
     }
-
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        // реализовать скрытие клавиатуры
-        
-    }
 }
 
+
+// MARK: - UITableViewDelegate and UITableViewDataSource
 
 extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -99,7 +106,8 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
+
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueFromFriendsToPhoto,
            let dst = segue.destination as? PhotoCollectionViewController,
@@ -117,7 +125,7 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: segueFromFriendsToPhoto, sender: cellObject)
     }
     
-    // MARK: - Header
+    // MARK: - Header for cell
     
     func arrayLetter() -> [String] {
         var resultArray = [String]()
@@ -145,11 +153,14 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
         return resultArray
     }
     
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-    
+
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return arrayLetter()[section].uppercased()
     }
+
 }

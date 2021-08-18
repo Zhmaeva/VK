@@ -7,15 +7,20 @@
 
 import UIKit
 
-class PhotoCell: UICollectionViewCell {
+// MARK: - PhotoCell
+
+final class PhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
-    
-    private let network = NetworkLayer()
-    
+
+    // MARK: - Public propertys
+
+    let network = NetworkLayer()
+
+    // MARK: - Public methods
+
     func setup() {
-        
     }
     
     
@@ -35,7 +40,8 @@ class PhotoCell: UICollectionViewCell {
         clearCell()
     }
     
-    
+    // MARK: Configure cell
+
     func configure(image: Photo) {
         var sizes = image.sizes
         sizes.sort { a, b in
@@ -58,4 +64,5 @@ class PhotoCell: UICollectionViewCell {
             }
         }
     }
+
 }

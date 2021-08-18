@@ -7,39 +7,83 @@
 
 import UIKit
 
-class AllGroupsViewController: UIViewController {
+//MARK: - AllGroupsViewController
+
+final class AllGroupsViewController: UIViewController {
     
     @IBOutlet weak var allGroupTableView: UITableView!
     @IBOutlet weak var searchBarAllGroups: UISearchBar!
+
+    // MARK: Private propertys
+
+    private let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
     
-    let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
-    
-    var allGroupArray = [Group]()
-    var searchGroupArray = [Group]()
+    private var allGroupArray = [Group]()
+    private var searchGroupArray = [Group]()
     private let groupsApiClient = VkClient()
 
-    // MARK: - Create Group data source array
+    // MARK: Private methods
+
+    private func loadGroups() {
+        groupsApiClient.getUserGroups { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let groups):
+                    self.allGroupArray = groups
+                    self.searchGroupArray = groups
+                    DispatchQueue.main.async {
+                        self.allGroupTableView.reloadData()
+                    }
+            }
+        }
+    }
+
+/*
+написать поиск по группам
+
+     private func loadGroupsSearch() {
+        groupsApiClient.getGroupSearch { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let groups):
+                    self.allGroupArray = groups
+                    self.searchGroupArray = groups
+                    DispatchQueue.main.async {
+                        self.allGroupTableView.reloadData()
+                    }
+            }
+        }
+    }
+*/
+
+
+    // MARK: - Life circle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         allGroupTableView.backgroundColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
-        allGroupTableView.reloadData()
     }
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        groupsApiClient.getUserGroups()
-        groupsApiClient.getGroupSearch()
-        allGroupArray = setupGroup()
         
         self.allGroupTableView.register(UINib(nibName: "UniversalCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierUniversalCell)
+
         allGroupTableView.delegate = self
         allGroupTableView.dataSource = self
         searchBarAllGroups.delegate = self
-        searchGroupArray = allGroupArray
+
+        loadGroups()
     }
+
 }
+
+// MARK: - UISearchBarDelegate
 
 extension AllGroupsViewController: UISearchBarDelegate  {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -47,16 +91,12 @@ extension AllGroupsViewController: UISearchBarDelegate  {
             searchGroupArray = allGroupArray
         } else {
             searchGroupArray = allGroupArray.filter({ groupItem in
-                groupItem.header.lowercased().contains(searchText.lowercased())
+                groupItem.name.lowercased().contains(searchText.lowercased())
             })
         }
         allGroupTableView.reloadData()
     }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        // реализовать скрытие клавиатуры
-        
-    }
+
 }
 // MARK: - Table view data source
 
@@ -72,7 +112,7 @@ extension AllGroupsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifierUniversalCell, for: indexPath) as? UniversalCell else {return UITableViewCell()}
-        
+
         cell.configure(group: searchGroupArray[indexPath.row])
         
         return cell

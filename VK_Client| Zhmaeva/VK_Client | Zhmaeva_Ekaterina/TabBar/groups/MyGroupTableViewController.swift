@@ -9,7 +9,7 @@ import UIKit
 
 class MyGroupTableViewController: UITableViewController {
     
-    let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
+    private let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
     private let reuseIdentifierMyGroupsTableCell = "reuseIdentifierMyGroupsTableCell"
     
     var myGroupArray = [Group]()
@@ -31,7 +31,7 @@ class MyGroupTableViewController: UITableViewController {
     
     // проверяем содержится ли группа в массиве
     func isContainedAnArray(group: Group) -> Bool {
-        if myGroupArray.contains(where: { itemGroup in itemGroup.header == group.header }) {
+        if myGroupArray.contains(where: { itemGroup in itemGroup.name == group.name }) {
             return true
         }
         return false

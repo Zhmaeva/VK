@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeaderView: UITableViewHeaderFooterView {
+final class HeaderView: UITableViewHeaderFooterView {
     
     
     @IBOutlet weak var backViewHeader: UIView!

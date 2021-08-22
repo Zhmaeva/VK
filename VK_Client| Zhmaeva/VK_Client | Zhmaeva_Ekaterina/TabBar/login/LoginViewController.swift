@@ -5,6 +5,7 @@
 //  Created by Catherine on 18.06.2021.
 //
 import UIKit
+import RealmSwift
 
 class LoginViewController: UIViewController {
     
@@ -43,7 +44,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         //MARK: - Появление/скрытие клавиатуры
         
         // Подписываемся на уведомления о появлении/скрытии клавиатуры

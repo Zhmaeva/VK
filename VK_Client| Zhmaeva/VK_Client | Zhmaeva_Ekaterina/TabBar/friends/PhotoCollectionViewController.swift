@@ -18,12 +18,12 @@ private let segueToGallery = "fromCollectionPhotoToGallery"
 
 final class PhotoCollectionViewController: UICollectionViewController {
 
-    private let photosApiClient = VkClient()
+    private let photosApiClient = DataManager()
 
     // MARK: Public propertys
 
     var userId: Int = -1
-    var photosArray = [Photo]()
+    var photosArray = [PhotoRealm]()
 
     // MARK: - Life circle
     

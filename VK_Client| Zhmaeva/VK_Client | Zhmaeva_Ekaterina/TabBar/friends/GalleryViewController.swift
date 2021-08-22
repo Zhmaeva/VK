@@ -14,7 +14,7 @@ final class GalleryViewController: UIViewController {
     @IBOutlet weak var fullPhoto: UIImageView!
 
     let network = NetworkLayer()
-    var gallery = [Photo]()
+    var gallery = [PhotoRealm]()
 
     var currentIndex = 0
     var currentPhoto: UIImageView?
@@ -28,7 +28,7 @@ final class GalleryViewController: UIViewController {
     }
 
 
-    func getPhotoMaxSizeUrl(photo: Photo) -> String {
+    func getPhotoMaxSizeUrl(photo: PhotoRealm) -> String {
         var maxSize = photo.sizes[0]
         for item in photo.sizes {
             if item.width > maxSize.width {

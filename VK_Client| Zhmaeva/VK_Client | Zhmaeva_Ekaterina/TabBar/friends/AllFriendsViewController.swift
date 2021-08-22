@@ -7,44 +7,63 @@
 
 import UIKit
 
-class AllFriendsViewController: UIViewController {
+// MARK: - AllFriendsViewController
+
+final class AllFriendsViewController: UIViewController {
 
     @IBOutlet weak var myFriendsTableView: UITableView!
     @IBOutlet weak var searchFriends: UISearchBar!
 
-    
-    let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
-    let segueFromFriendsToPhoto = "fromFriendsTableViewToPhotoFriendsCollectionViewSegue"
-    
-    var personsArray = [Person]()
-    var searchResultArray = [Person]()
+    // MARK: - Public propertys
+
+    var personsArray = [User]()
+    var searchResultArray = [User]()
+
+    // MARK: - Private propertys
+
+    private let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
+    private let segueFromFriendsToPhoto = "fromFriendsTableViewToPhotoFriendsCollectionViewSegue"
     private let apiClient = VkClient()
-    
-    func configure(personsArray: [Person]) {
-        self.personsArray = personsArray
+
+    // MARK: - Public methods
+
+    func configure() {
     }
 
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        myFriendsTableView.backgroundColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
-        myFriendsTableView.reloadData()
+
+    func loadData() {
+        apiClient.getFriends { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let users):
+                    self.personsArray = users
+                    self.searchResultArray = users
+                    DispatchQueue.main.async {
+                        self.myFriendsTableView.reloadData()
+                    }
+            }
+        }
     }
+
+    // MARK: - Life circle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        apiClient.getFriends()
-        
         self.myFriendsTableView.register(UINib(nibName: "UniversalCell", bundle: nil), forCellReuseIdentifier: reuseIdentifierUniversalCell)
         
         myFriendsTableView.delegate = self
         myFriendsTableView.dataSource = self
         searchFriends.delegate = self
-        searchResultArray = personsArray
+
+        loadData()
     }
+
 }
 
+// MARK: - UISearchBarDelegate
 
 extension AllFriendsViewController: UISearchBarDelegate  {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -52,19 +71,15 @@ extension AllFriendsViewController: UISearchBarDelegate  {
             searchResultArray = personsArray
         } else {
             searchResultArray = personsArray.filter({ personItem in
-                personItem.name.lowercased().contains(searchText.lowercased())
+                ((personItem.firstName) + (personItem.lastName)).lowercased().contains(searchText.lowercased())
             })
         }
         myFriendsTableView.reloadData()
     }
-
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        // реализовать скрытие клавиатуры
-        
-    }
 }
 
+
+// MARK: - UITableViewDelegate and UITableViewDataSource
 
 extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -91,43 +106,49 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
+
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueFromFriendsToPhoto,
-            let dst = segue.destination as? PhotoCollectionViewController,
-            let user = sender as? Person {
-            dst.photoArray = user.photoArray
+           let dst = segue.destination as? PhotoCollectionViewController,
+           let user = sender as? User {
+            dst.userId = user.id
         }
     }
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? UniversalCell,
-              let cellObject = cell.savedAnyObject as? Person
+              let cellObject = cell.savedAnyObject as? User
         else {return}
         
         performSegue(withIdentifier: segueFromFriendsToPhoto, sender: cellObject)
     }
     
-// MARK: - Header
+    // MARK: - Header for cell
     
     func arrayLetter() -> [String] {
         var resultArray = [String]()
         
         for item in searchResultArray {
-            let nameLetter = String(item.name.prefix(1))
+            let fullName = item.firstName + item.lastName
+            let nameLetter = String(fullName.prefix(1))
             if !resultArray.contains(nameLetter) {
                 resultArray.append(nameLetter)
             }
         }
+
+        resultArray.sort()
+
         return resultArray
     }
     
-    func arrayByLetter(letter: String) -> [Person] {
-        var resultArray = [Person]()
+    func arrayByLetter(letter: String) -> [User] {
+        var resultArray = [User]()
         
         for item in searchResultArray {
-            let nameLetter = String(item.name.prefix(1))
+            let fullName = item.firstName + item.lastName
+            let nameLetter = String(fullName.prefix(1))
             if nameLetter == letter {
                 resultArray.append(item)
             }
@@ -135,11 +156,14 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
         return resultArray
     }
     
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-    
+
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return arrayLetter()[section].uppercased()
     }
+
 }

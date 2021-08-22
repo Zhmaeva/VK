@@ -17,7 +17,7 @@ class MainTabBarController: UITabBarController {
         
         if let friendsNavigationController = self.viewControllers?.first as? UINavigationController,
            let friendViewController = friendsNavigationController.viewControllers.first as? AllFriendsViewController {
-            friendViewController.configure(personsArray: setupUser())
+            friendViewController.configure()
         }
     }
 }

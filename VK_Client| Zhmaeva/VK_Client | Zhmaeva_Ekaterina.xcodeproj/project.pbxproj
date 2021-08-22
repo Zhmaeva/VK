@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		C100A82E269AFF50007E68B4 /* animationLoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C100A82D269AFF50007E68B4 /* animationLoginPage.swift */; };
+		C123F19E26CB05310028D2F8 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C123F19D26CB05310028D2F8 /* RealmSwift */; };
+		C123F1A026CB05310028D2F8 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C123F19F26CB05310028D2F8 /* Realm */; };
+		C137C58E26C9198F006D4F70 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C137C58D26C9198F006D4F70 /* Kingfisher */; };
 		C138D5ED268DD10500D6B495 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C138D5EC268DD10500D6B495 /* HomeTableViewController.swift */; };
 		C138D5EF268DD3EC00D6B495 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C138D5EE268DD3EC00D6B495 /* HomeTableViewCell.swift */; };
 		C138D5F1268E08FF00D6B495 /* AllGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C138D5F0268E08FF00D6B495 /* AllGroupsViewController.swift */; };
@@ -30,14 +33,14 @@
 		C1A200B726C527D1009410DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200A826C527D1009410DB /* SceneDelegate.swift */; };
 		C1A200B826C527D1009410DB /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AA26C527D1009410DB /* Session.swift */; };
 		C1A200B926C527D1009410DB /* VkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AB26C527D1009410DB /* VkClient.swift */; };
-		C1A200BA26C527D1009410DB /* PersonDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AD26C527D1009410DB /* PersonDataSource.swift */; };
-		C1A200BB26C527D1009410DB /* GroupDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AE26C527D1009410DB /* GroupDataSource.swift */; };
 		C1A200BC26C527D1009410DB /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AF26C527D1009410DB /* NewsDataSource.swift */; };
 		C1A200BD26C527D1009410DB /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B126C527D1009410DB /* NetworkLayer.swift */; };
-		C1A200BE26C527D1009410DB /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B326C527D1009410DB /* Person.swift */; };
+		C1A200BE26C527D1009410DB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B326C527D1009410DB /* User.swift */; };
 		C1A200BF26C527D1009410DB /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B426C527D1009410DB /* Group.swift */; };
 		C1A200C026C527D1009410DB /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B526C527D1009410DB /* News.swift */; };
 		C1A200C426C52883009410DB /* LoginWKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200C226C52883009410DB /* LoginWKWebViewController.swift */; };
+		C1B1029926CC121E00973791 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B1029826CC121E00973791 /* Response.swift */; };
+		C1B1029B26CC474500973791 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B1029A26CC474500973791 /* Photo.swift */; };
 		C1BE4DA2269B9BC0009ED5ED /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DA1269B9BC0009ED5ED /* GalleryViewController.swift */; };
 		C1BE4DA4269CA415009ED5ED /* animationMyFriendsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DA3269CA415009ED5ED /* animationMyFriendsPage.swift */; };
 		C1BE4DAE26A4B418009ED5ED /* animationHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BE4DAD26A4B418009ED5ED /* animationHome.swift */; };
@@ -69,14 +72,14 @@
 		C1A200A826C527D1009410DB /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C1A200AA26C527D1009410DB /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		C1A200AB26C527D1009410DB /* VkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VkClient.swift; sourceTree = "<group>"; };
-		C1A200AD26C527D1009410DB /* PersonDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonDataSource.swift; sourceTree = "<group>"; };
-		C1A200AE26C527D1009410DB /* GroupDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDataSource.swift; sourceTree = "<group>"; };
 		C1A200AF26C527D1009410DB /* NewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDataSource.swift; sourceTree = "<group>"; };
 		C1A200B126C527D1009410DB /* NetworkLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
-		C1A200B326C527D1009410DB /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		C1A200B326C527D1009410DB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C1A200B426C527D1009410DB /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		C1A200B526C527D1009410DB /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		C1A200C226C52883009410DB /* LoginWKWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWKWebViewController.swift; sourceTree = "<group>"; };
+		C1B1029826CC121E00973791 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		C1B1029A26CC474500973791 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C1BE4DA1269B9BC0009ED5ED /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		C1BE4DA3269CA415009ED5ED /* animationMyFriendsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animationMyFriendsPage.swift; sourceTree = "<group>"; };
 		C1BE4DAD26A4B418009ED5ED /* animationHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animationHome.swift; sourceTree = "<group>"; };
@@ -87,6 +90,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C123F1A026CB05310028D2F8 /* Realm in Frameworks */,
+				C123F19E26CB05310028D2F8 /* RealmSwift in Frameworks */,
+				C137C58E26C9198F006D4F70 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +102,6 @@
 		C100A82C269AFEC7007E68B4 /* login */ = {
 			isa = PBXGroup;
 			children = (
-				C1A200C326C52883009410DB /* WebViewController */,
 				C1A200C126C52883009410DB /* WKWebView */,
 				C1975967267CCB1700B3FD81 /* LoginViewController.swift */,
 				C100A82D269AFF50007E68B4 /* animationLoginPage.swift */,
@@ -107,7 +112,8 @@
 		C13007EA26847FF200E56F2F /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				C149256C26878F48005D7BCE /* MainTabBarController.swift */,
+				C149256726864DAF005D7BCE /* Cell */,
+				C1D997BB26CAF31D0027F140 /* tabbar */,
 				C100A82C269AFEC7007E68B4 /* login */,
 				C15F5BEA2696515E00A29C12 /* friends */,
 				C15F5BE92696514900A29C12 /* groups */,
@@ -117,12 +123,13 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		C13007EC268481BF00E56F2F /* Main */ = {
+		C13007EC268481BF00E56F2F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				C197596E267CCB1800B3FD81 /* LaunchScreen.storyboard */,
 				C1975969267CCB1700B3FD81 /* Main.storyboard */,
 			);
-			path = Main;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		C149256726864DAF005D7BCE /* Cell */ = {
@@ -188,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				C1975971267CCB1800B3FD81 /* Info.plist */,
-				C197596E267CCB1800B3FD81 /* LaunchScreen.storyboard */,
 				C197596C267CCB1800B3FD81 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -215,10 +221,10 @@
 		C1975962267CCB1700B3FD81 /* VK_Client | Zhmaeva_Ekaterina */ = {
 			isa = PBXGroup;
 			children = (
+				C1A200A626C527D1009410DB /* Start layer */,
 				C1A200A526C527D1009410DB /* Core */,
-				C13007EC268481BF00E56F2F /* Main */,
 				C13007EA26847FF200E56F2F /* TabBar */,
-				C149256726864DAF005D7BCE /* Cell */,
+				C13007EC268481BF00E56F2F /* Storyboards */,
 			);
 			path = "VK_Client | Zhmaeva_Ekaterina";
 			sourceTree = "<group>";
@@ -226,9 +232,8 @@
 		C1A200A526C527D1009410DB /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C1A200A626C527D1009410DB /* Start layer */,
-				C1A200A926C527D1009410DB /* API layer */,
 				C1A200AC26C527D1009410DB /* Data Sources */,
+				C1A200A926C527D1009410DB /* API layer */,
 				C1A200B026C527D1009410DB /* Network layer */,
 				C1A200B226C527D1009410DB /* Data Model */,
 			);
@@ -256,8 +261,6 @@
 		C1A200AC26C527D1009410DB /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C1A200AD26C527D1009410DB /* PersonDataSource.swift */,
-				C1A200AE26C527D1009410DB /* GroupDataSource.swift */,
 				C1A200AF26C527D1009410DB /* NewsDataSource.swift */,
 			);
 			path = "Data Sources";
@@ -274,7 +277,9 @@
 		C1A200B226C527D1009410DB /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				C1A200B326C527D1009410DB /* Person.swift */,
+				C1B1029826CC121E00973791 /* Response.swift */,
+				C1A200B326C527D1009410DB /* User.swift */,
+				C1B1029A26CC474500973791 /* Photo.swift */,
 				C1A200B426C527D1009410DB /* Group.swift */,
 				C1A200B526C527D1009410DB /* News.swift */,
 			);
@@ -289,11 +294,12 @@
 			path = WKWebView;
 			sourceTree = "<group>";
 		};
-		C1A200C326C52883009410DB /* WebViewController */ = {
+		C1D997BB26CAF31D0027F140 /* tabbar */ = {
 			isa = PBXGroup;
 			children = (
+				C149256C26878F48005D7BCE /* MainTabBarController.swift */,
 			);
-			path = WebViewController;
+			path = tabbar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +318,11 @@
 			dependencies = (
 			);
 			name = "VK_Client | Zhmaeva_Ekaterina";
+			packageProductDependencies = (
+				C137C58D26C9198F006D4F70 /* Kingfisher */,
+				C123F19D26CB05310028D2F8 /* RealmSwift */,
+				C123F19F26CB05310028D2F8 /* Realm */,
+			);
 			productName = "VK_Client | Zhmaeva_Ekaterina";
 			productReference = C1975960267CCB1700B3FD81 /* VK_Client | Zhmaeva_Ekaterina.app */;
 			productType = "com.apple.product-type.application";
@@ -339,6 +350,10 @@
 				Base,
 			);
 			mainGroup = C1975957267CCB1700B3FD81;
+			packageReferences = (
+				C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C123F19C26CB05310028D2F8 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = C1975961267CCB1700B3FD81 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -369,10 +384,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1A200BE26C527D1009410DB /* Person.swift in Sources */,
+				C1A200BE26C527D1009410DB /* User.swift in Sources */,
 				C1A200C426C52883009410DB /* LoginWKWebViewController.swift in Sources */,
 				C149257D26889BB9005D7BCE /* MyGroupTableViewController.swift in Sources */,
 				C1975968267CCB1700B3FD81 /* LoginViewController.swift in Sources */,
+				C1B1029926CC121E00973791 /* Response.swift in Sources */,
 				C149256A26864E31005D7BCE /* UniversalCell.swift in Sources */,
 				C15F5BED2696ED2500A29C12 /* MessagesViewController.swift in Sources */,
 				C1BE4DA4269CA415009ED5ED /* animationMyFriendsPage.swift in Sources */,
@@ -381,7 +397,6 @@
 				C138D5F1268E08FF00D6B495 /* AllGroupsViewController.swift in Sources */,
 				C1BE4DAE26A4B418009ED5ED /* animationHome.swift in Sources */,
 				C138D5ED268DD10500D6B495 /* HomeTableViewController.swift in Sources */,
-				C1A200BA26C527D1009410DB /* PersonDataSource.swift in Sources */,
 				C1BE4DA2269B9BC0009ED5ED /* GalleryViewController.swift in Sources */,
 				C1A200BD26C527D1009410DB /* NetworkLayer.swift in Sources */,
 				C1A200B826C527D1009410DB /* Session.swift in Sources */,
@@ -392,11 +407,11 @@
 				C1A200BF26C527D1009410DB /* Group.swift in Sources */,
 				C15F5BF22696FDDE00A29C12 /* HeaderView.swift in Sources */,
 				C1A200C026C527D1009410DB /* News.swift in Sources */,
-				C1A200BB26C527D1009410DB /* GroupDataSource.swift in Sources */,
 				C100A82E269AFF50007E68B4 /* animationLoginPage.swift in Sources */,
 				C1A200BC26C527D1009410DB /* NewsDataSource.swift in Sources */,
 				C1A200B626C527D1009410DB /* AppDelegate.swift in Sources */,
 				C138D5EF268DD3EC00D6B495 /* HomeTableViewCell.swift in Sources */,
+				C1B1029B26CC474500973791 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +613,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C123F19C26CB05310028D2F8 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.12.0;
+			};
+		};
+		C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C123F19D26CB05310028D2F8 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C123F19C26CB05310028D2F8 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		C123F19F26CB05310028D2F8 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C123F19C26CB05310028D2F8 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		C137C58D26C9198F006D4F70 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C137C58C26C9198F006D4F70 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C1975958267CCB1700B3FD81 /* Project object */;
 }

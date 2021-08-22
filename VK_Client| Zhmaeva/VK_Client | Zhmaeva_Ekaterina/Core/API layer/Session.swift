@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Session singleton
+
 final class Session {
 
     public static let shared = Session()

@@ -7,8 +7,51 @@
 
 import Foundation
 
+// MARK: - NetworkLayer
+
 final class NetworkLayer {
 
-    
+    // MARK: Get image
+
+    func getImage(imageUrl: String,
+                  complition: @escaping(Result<Data, Error>) -> Void) {
+
+        guard let url = URL(string: imageUrl) else { return }
+
+        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
+            if let error = error {
+                complition(.failure(error))
+            }
+
+            if let data = data {
+                complition(.success(data))
+            }
+        }
+        dataTask.resume()
+    }
+
+    // MARK: Download JSON
+
+    func sendRequest<T: Decodable>(url: URL,
+                                   complition: @escaping(Result<[T], Error>) -> Void) {
+        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
+            if let error = error {
+                complition(.failure(error))
+            }
+
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                    let json = try decoder.decode(Response<T>.self, from: data)
+                    complition(.success(json.response.items))
+                } catch let error {
+                    complition(.failure(error))
+                }
+            }
+        }
+        dataTask.resume()
+    }
 }
 

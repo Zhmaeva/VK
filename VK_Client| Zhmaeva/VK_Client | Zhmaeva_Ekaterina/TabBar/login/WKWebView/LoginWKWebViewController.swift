@@ -8,7 +8,9 @@
 import UIKit
 import WebKit
 
-class LoginWKWebViewController: UIViewController {
+// MARK: - LoginWKWebViewController
+
+final class LoginWKWebViewController: UIViewController {
 
     @IBOutlet weak var loginWebView: WKWebView! {
         didSet {

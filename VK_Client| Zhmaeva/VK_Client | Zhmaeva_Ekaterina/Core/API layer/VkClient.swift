@@ -7,12 +7,23 @@
 
 import Foundation
 
+// MARK: - VK Client
+
 final class VkClient {
+
+    // MARK: - Public property
+
+    let network = NetworkLayer()
+
+
+    // MARK: - Private property
 
     private let version = "5.131"
 
-    func getAuthUrl() -> URL? {
 
+    // MARK: - Public methods
+
+    func getAuthUrl() -> URL? {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
@@ -31,8 +42,8 @@ final class VkClient {
         return url
     }
 
-    func getFriends() {
 
+    func getFriends(complition: @escaping(Result<[User], Error>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.vk.com"
@@ -40,24 +51,16 @@ final class VkClient {
         urlComponents.queryItems = [
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: version),
-            URLQueryItem(name: "fields", value: "nickname")
+            //URLQueryItem(name: "count", value: "10"),
+            URLQueryItem(name: "fields", value: "nickname, photo_200_orig")
         ]
         guard let url = urlComponents.url else { return }
 
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data)
-                    print(json)
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        dataTask.resume()
+        network.sendRequest(url: url, complition: complition)
     }
 
-    func getUserPhotos() {
+
+    func getUserPhotos(userId: Int, complition: @escaping(Result<[Photo], Error>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.vk.com"
@@ -65,27 +68,18 @@ final class VkClient {
         urlComponents.queryItems = [
             URLQueryItem(name: "access_token", value: Session.shared.token),
             URLQueryItem(name: "v", value: version),
-            URLQueryItem(name: "owner_id", value: Session.shared.userId),
+            URLQueryItem(name: "owner_id", value: String(userId)),
             URLQueryItem(name: "extended", value: "1"),
             URLQueryItem(name: "count", value: "100"),
             URLQueryItem(name: "photo_sizes", value: "1")
         ]
         guard let url = urlComponents.url else { return }
 
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data)
-                    print(json)
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        dataTask.resume()
+        network.sendRequest(url: url, complition: complition)
     }
 
-    func getUserGroups() {
+
+    func getUserGroups(complition: @escaping(Result<[Group], Error>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.vk.com"
@@ -95,25 +89,16 @@ final class VkClient {
             URLQueryItem(name: "v", value: version),
             URLQueryItem(name: "user_id", value: Session.shared.userId),
             URLQueryItem(name: "extended", value: "1"),
-            URLQueryItem(name: "count", value: "100"),
-            URLQueryItem(name: "fields", value: "description")
+            URLQueryItem(name: "count", value: "10"),
+            URLQueryItem(name: "fields", value: "id, name, photo_200, description, fixed_post, site")
         ]
         guard let url = urlComponents.url else { return }
 
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data)
-                    print(json)
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        dataTask.resume()
+        network.sendRequest(url: url, complition: complition)
     }
 
-    func getGroupSearch() {
+// понять как работает поиск групп
+    func getGroupSearch(complition: @escaping(Result<[Group], Error>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.vk.com"
@@ -130,16 +115,7 @@ final class VkClient {
         ]
         guard let url = urlComponents.url else { return }
 
-        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error  in
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data)
-                    print(json)
-                } catch {
-                    print(error)
-                }
-            }
-        }
-        dataTask.resume()
+        network.sendRequest(url: url, complition: complition)
     }
+
 }

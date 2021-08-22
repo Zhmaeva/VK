@@ -7,17 +7,22 @@
 
 import UIKit
 
-class UniversalCell: UITableViewCell {
+// MARK: - Universal cell for friends and groups
+
+final class UniversalCell: UITableViewCell {
 
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
 
+// MARK: - Public property
 
     var savedAnyObject: Any?
+    let network = NetworkLayer()
 
+// MARK: - Private methods
 
-    func setup() {
+    private func setup() {
         pictureImageView.layer.cornerRadius = 22
         backView.layer.cornerRadius = 22
         backView.layer.shadowColor = UIColor.black.cgColor
@@ -29,11 +34,10 @@ class UniversalCell: UITableViewCell {
         titleLabel.layer.shadowOffset = CGSize(width: 10, height: 10)
         titleLabel.layer.shadowRadius = 3
         animateAvatar()
-        
     }
 
 
-    func clearCell() {
+    private func clearCell() {
         self.pictureImageView.image = nil
         self.titleLabel.text = nil
         savedAnyObject = nil
@@ -51,6 +55,7 @@ class UniversalCell: UITableViewCell {
         clearCell()
     }
 
+// MARK: Configure cell
 
     func configure(title: String?, image: UIImage?) {
         titleLabel.text = title
@@ -58,19 +63,40 @@ class UniversalCell: UITableViewCell {
     }
 
 
-    func configure(user: Person) {
+    func configure(user: User) {
         gradientView()
         savedAnyObject = user
-        titleLabel.text = user.name
-        pictureImageView.image = user.photo
+        titleLabel.text = "\(user.firstName) \(user.lastName)"
+
+        network.getImage(imageUrl: user.photo200Orig) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self.pictureImageView.image = UIImage(data: image)
+                    }
+            }
+        }
     }
 
 
     func configure(group: Group) {
         gradientView()
         savedAnyObject = group
-        titleLabel.text = group.header
-        pictureImageView.image = group.icon   }
+        titleLabel.text = group.name
+        network.getImage(imageUrl: group.photo200) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self.pictureImageView.image = UIImage(data: image)
+                    }
+            }
+        }
+    }
     
 }
-

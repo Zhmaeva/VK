@@ -7,40 +7,64 @@
 
 import UIKit
 
+// MARK: - Private propertys
+
 private let reuseIdentifier = "Cell"
 private let reuseIdentifierPhotoCollectionCell = "reuseIdentifierPhotoCollectionCell"
 private let segueToGallery = "fromCollectionPhotoToGallery"
 
-class PhotoCollectionViewController: UICollectionViewController {
-    
-    var photoArray = [UIImage]()
-    
+
+// MARK: - PhotoCollectionViewController
+
+final class PhotoCollectionViewController: UICollectionViewController {
+
     private let photosApiClient = VkClient()
+
+    // MARK: Public propertys
+
+    var userId: Int = -1
+    var photosArray = [Photo]()
+
+    // MARK: - Life circle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         collectionView.backgroundColor = #colorLiteral(red: 0.129396528, green: 0.1294215024, blue: 0.1293910444, alpha: 1)
         self.collectionView.reloadData()
     }
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        photosApiClient.getUserPhotos()
+        photosApiClient.getUserPhotos(userId: userId) { [weak self] result in
+            guard let self = self else { return }
 
-        // Register cell classes
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let photos):
+                    DispatchQueue.main.async {
+                        self.photosArray = photos
+                        self.collectionView.reloadData()
+                    }
+            }
+        }
         self.collectionView!.register(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
     }
-    
+
+    // MARK: - Segue
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueToGallery,
            let dst = segue.destination as? GalleryViewController,
            let selectedPhoto = sender as? Int {
-            dst.gallery = photoArray
+            dst.gallery = photosArray
             dst.currentIndex = selectedPhoto
         }
     }
     
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         performSegue(withIdentifier: segueToGallery, sender: indexPath.item)
     }
@@ -54,18 +78,20 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return photoArray.count
+        return photosArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCell else {return UICollectionViewCell()}
         
-        cell.configure(image: photoArray[indexPath.item])
+        cell.configure(image: photosArray[indexPath.item])
         
         return cell
     }
+
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension PhotoCollectionViewController: UICollectionViewDelegateFlowLayout {
     
@@ -87,4 +113,5 @@ extension PhotoCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(25)
     }
+
 }

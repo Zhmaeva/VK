@@ -7,19 +7,26 @@
 
 import UIKit
 
-class MyGroupTableViewController: UITableViewController {
+// MARK: - MyGroupTableViewController
+
+final class MyGroupTableViewController: UITableViewController {
+
+    // MARK: Private propertys
     
     private let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
     private let reuseIdentifierMyGroupsTableCell = "reuseIdentifierMyGroupsTableCell"
-    
-    var myGroupArray = [Group]()
+
+    // MARK: Public propertys
+
+    var myGroupArray = [GroupRealm]()
+
+    // MARK: - Life circle
     
     // обновление ячеек перед появлением
     override func viewWillAppear(_ animated: Bool) {
         tableView.backgroundColor = #colorLiteral(red: 0.8979603648, green: 0.8980897069, blue: 0.8979321122, alpha: 1)
         self.tableView.reloadData()
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +35,11 @@ class MyGroupTableViewController: UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(addNewGroup(_:)), name: NSNotification.Name(rawValue: "sendGroup"), object: nil)
     }
-    
+
+    // MARK: - Methods
+
     // проверяем содержится ли группа в массиве
-    func isContainedAnArray(group: Group) -> Bool {
+    private func isContainedAnArray(group: GroupRealm) -> Bool {
         if myGroupArray.contains(where: { itemGroup in itemGroup.name == group.name }) {
             return true
         }
@@ -38,7 +47,7 @@ class MyGroupTableViewController: UITableViewController {
     }
     
     @objc func addNewGroup(_ notification: Notification) {
-        guard let newGroup = notification.object as? Group else {return}
+        guard let newGroup = notification.object as? GroupRealm else {return}
         
         if isContainedAnArray(group: newGroup) {
             return
@@ -78,6 +87,8 @@ class MyGroupTableViewController: UITableViewController {
         return cell
     }
 
+    // MARK: - Table view delegate
+    
     // расстояние между ячейками
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60

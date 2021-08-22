@@ -123,9 +123,9 @@
 			isa = PBXGroup;
 			children = (
 				C10438BB26D25E2500C6837C /* UserRealm.swift */,
-				C10438BD26D268FA00C6837C /* GroupRealm.swift */,
 				C10438BF26D26A9000C6837C /* PhotoRealm.swift */,
 				C10438C126D26DC900C6837C /* PhotoSizesRealm.swift */,
+				C10438BD26D268FA00C6837C /* GroupRealm.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -261,11 +261,11 @@
 		C1A200A526C527D1009410DB /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C10438C326D27F7E00C6837C /* DataLayer */,
-				C1A200AC26C527D1009410DB /* Data Sources */,
 				C1A200A926C527D1009410DB /* API layer */,
 				C1A200B026C527D1009410DB /* Network layer */,
+				C10438C326D27F7E00C6837C /* DataLayer */,
 				C1A200B226C527D1009410DB /* Data Model */,
+				C1A200AC26C527D1009410DB /* Data Sources */,
 			);
 			path = Core;
 			sourceTree = "<group>";

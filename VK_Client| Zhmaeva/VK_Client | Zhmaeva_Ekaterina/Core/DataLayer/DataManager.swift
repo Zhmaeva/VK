@@ -16,6 +16,7 @@ final class DataManager {
     private let client = VkClient()
     private let expirationTime = 10.0
     private var friedsLastRequestTime: Date? = nil
+    private var groupsLastRequestTime: Date? = nil
 
     //MARK: - Public methods
 
@@ -83,6 +84,46 @@ final class DataManager {
 
                         complition(.success(photosRealm))
                     }
+            }
+        }
+    }
+
+
+    func getUserGroups(complition: @escaping(Result<[GroupRealm], Error>) -> Void) {
+        if groupsLastRequestTime != nil && groupsLastRequestTime!.addingTimeInterval(expirationTime * 60) > Date() {
+            guard let realm = try? Realm() else { return }
+
+            let groups = realm.objects(GroupRealm.self)
+            let groupsArray = Array(groups)
+
+            complition(.success(groupsArray))
+            return
+        }
+
+        client.getUserGroups { [weak self] result in
+            guard let self = self else { return }
+
+            guard case let Result.success(data) = result else {
+                if case let Result.failure(error) = result {
+                    complition(.failure(error))
+                }
+                return
+            }
+            let groups = data.map { group -> GroupRealm in
+                let groupRealm = GroupRealm(id: group.id, name: group.name, photo: group.photo200)
+                return groupRealm
+            }
+
+            DispatchQueue.main.async  {
+                guard let realm = try? Realm() else { return }
+
+                try? realm.write {
+                    realm.add(groups, update: .modified)
+                }
+
+                self.groupsLastRequestTime = Date()
+
+                complition(.success(groups))
             }
         }
     }

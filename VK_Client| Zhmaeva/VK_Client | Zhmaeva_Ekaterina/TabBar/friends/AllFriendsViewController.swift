@@ -16,14 +16,14 @@ final class AllFriendsViewController: UIViewController {
 
     // MARK: - Public propertys
 
-    var personsArray = [User]()
-    var searchResultArray = [User]()
+    var personsArray = [UserRealm]()
+    var searchResultArray = [UserRealm]()
 
     // MARK: - Private propertys
 
     private let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
     private let segueFromFriendsToPhoto = "fromFriendsTableViewToPhotoFriendsCollectionViewSegue"
-    private let apiClient = VkClient()
+    private let dataManger = DataManager()
 
     // MARK: - Public methods
 
@@ -32,7 +32,7 @@ final class AllFriendsViewController: UIViewController {
 
 
     func loadData() {
-        apiClient.getFriends { [weak self] result in
+        dataManger.getFriends { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .failure(let error):
@@ -111,7 +111,7 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueFromFriendsToPhoto,
            let dst = segue.destination as? PhotoCollectionViewController,
-           let user = sender as? User {
+           let user = sender as? UserRealm {
             dst.userId = user.id
         }
     }
@@ -119,7 +119,7 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? UniversalCell,
-              let cellObject = cell.savedAnyObject as? User
+              let cellObject = cell.savedAnyObject as? UserRealm
         else {return}
         
         performSegue(withIdentifier: segueFromFriendsToPhoto, sender: cellObject)
@@ -143,8 +143,8 @@ extension AllFriendsViewController: UITableViewDelegate, UITableViewDataSource {
         return resultArray
     }
     
-    func arrayByLetter(letter: String) -> [User] {
-        var resultArray = [User]()
+    func arrayByLetter(letter: String) -> [UserRealm] {
+        var resultArray = [UserRealm]()
         
         for item in searchResultArray {
             let fullName = item.firstName + item.lastName

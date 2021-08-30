@@ -12,6 +12,7 @@
 		C10438BE26D268FA00C6837C /* GroupRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10438BD26D268FA00C6837C /* GroupRealm.swift */; };
 		C10438C026D26A9000C6837C /* PhotoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10438BF26D26A9000C6837C /* PhotoRealm.swift */; };
 		C10438C226D26DC900C6837C /* PhotoSizesRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10438C126D26DC900C6837C /* PhotoSizesRealm.swift */; };
+		C10438C526D27F9B00C6837C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10438C426D27F9B00C6837C /* DataManager.swift */; };
 		C123F19E26CB05310028D2F8 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C123F19D26CB05310028D2F8 /* RealmSwift */; };
 		C123F1A026CB05310028D2F8 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C123F19F26CB05310028D2F8 /* Realm */; };
 		C137C58E26C9198F006D4F70 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C137C58D26C9198F006D4F70 /* Kingfisher */; };
@@ -56,6 +57,7 @@
 		C10438BD26D268FA00C6837C /* GroupRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRealm.swift; sourceTree = "<group>"; };
 		C10438BF26D26A9000C6837C /* PhotoRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRealm.swift; sourceTree = "<group>"; };
 		C10438C126D26DC900C6837C /* PhotoSizesRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSizesRealm.swift; sourceTree = "<group>"; };
+		C10438C426D27F9B00C6837C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C138D5EC268DD10500D6B495 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		C138D5EE268DD3EC00D6B495 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		C138D5F0268E08FF00D6B495 /* AllGroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsViewController.swift; sourceTree = "<group>"; };
@@ -121,11 +123,19 @@
 			isa = PBXGroup;
 			children = (
 				C10438BB26D25E2500C6837C /* UserRealm.swift */,
-				C10438BD26D268FA00C6837C /* GroupRealm.swift */,
 				C10438BF26D26A9000C6837C /* PhotoRealm.swift */,
 				C10438C126D26DC900C6837C /* PhotoSizesRealm.swift */,
+				C10438BD26D268FA00C6837C /* GroupRealm.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		C10438C326D27F7E00C6837C /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				C10438C426D27F9B00C6837C /* DataManager.swift */,
+			);
+			path = DataLayer;
 			sourceTree = "<group>";
 		};
 		C13007EA26847FF200E56F2F /* TabBar */ = {
@@ -251,10 +261,11 @@
 		C1A200A526C527D1009410DB /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				C1A200AC26C527D1009410DB /* Data Sources */,
 				C1A200A926C527D1009410DB /* API layer */,
 				C1A200B026C527D1009410DB /* Network layer */,
+				C10438C326D27F7E00C6837C /* DataLayer */,
 				C1A200B226C527D1009410DB /* Data Model */,
+				C1A200AC26C527D1009410DB /* Data Sources */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -423,6 +434,7 @@
 				C1A200BD26C527D1009410DB /* NetworkLayer.swift in Sources */,
 				C1A200B826C527D1009410DB /* Session.swift in Sources */,
 				C1A200B726C527D1009410DB /* SceneDelegate.swift in Sources */,
+				C10438C526D27F9B00C6837C /* DataManager.swift in Sources */,
 				C1A200B926C527D1009410DB /* VkClient.swift in Sources */,
 				C149256626864D2E005D7BCE /* AllFriendsViewController.swift in Sources */,
 				C14925752687BB08005D7BCE /* PhotoCollectionViewController.swift in Sources */,

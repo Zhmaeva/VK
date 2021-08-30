@@ -18,14 +18,14 @@ final class AllGroupsViewController: UIViewController {
 
     private let reuseIdentifierUniversalCell = "reuseIdentifierUniversalCell"
     
-    private var allGroupArray = [Group]()
-    private var searchGroupArray = [Group]()
-    private let groupsApiClient = VkClient()
+    private var allGroupArray = [GroupRealm]()
+    private var searchGroupArray = [GroupRealm]()
+    private let groupsClient = DataManager()
 
     // MARK: Private methods
 
     private func loadGroups() {
-        groupsApiClient.getUserGroups { [weak self] result in
+        groupsClient.getUserGroups { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .failure(let error):
@@ -83,24 +83,9 @@ final class AllGroupsViewController: UIViewController {
 
 }
 
-// MARK: - UISearchBarDelegate
-
-extension AllGroupsViewController: UISearchBarDelegate  {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            searchGroupArray = allGroupArray
-        } else {
-            searchGroupArray = allGroupArray.filter({ groupItem in
-                groupItem.name.lowercased().contains(searchText.lowercased())
-            })
-        }
-        allGroupTableView.reloadData()
-    }
-
-}
 // MARK: - Table view data source
 
-extension AllGroupsViewController: UITableViewDelegate, UITableViewDataSource {
+extension AllGroupsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -117,25 +102,49 @@ extension AllGroupsViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
-    
-    // переход по нажатии на ячейку
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? UniversalCell,
-              let cellObject = cell.savedAnyObject as? Group
-        else {return}
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendGroup"), object: cellObject)
-        
-        self.navigationController?.popViewController(animated: true)
-    }
-    
+
+}
+
+// MARK: - Table view data delegate
+
+extension AllGroupsViewController:  UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+
+    // переход по нажатии на ячейку
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        guard let cell = tableView.cellForRow(at: indexPath) as? UniversalCell,
+              let cellObject = cell.savedAnyObject as? GroupRealm
+        else {return}
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sendGroup"), object: cellObject)
+
+        self.navigationController?.popViewController(animated: true)
+    }
+
+}
+
+
+// MARK: - UISearchBarDelegate
+
+extension AllGroupsViewController: UISearchBarDelegate  {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            searchGroupArray = allGroupArray
+        } else {
+            searchGroupArray = allGroupArray.filter({ groupItem in
+                groupItem.name.lowercased().contains(searchText.lowercased())
+            })
+        }
+        allGroupTableView.reloadData()
+    }
+
 }

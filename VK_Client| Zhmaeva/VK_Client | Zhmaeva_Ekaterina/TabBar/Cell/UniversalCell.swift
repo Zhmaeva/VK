@@ -63,12 +63,12 @@ final class UniversalCell: UITableViewCell {
     }
 
 
-    func configure(user: User) {
+    func configure(user: UserRealm) {
         gradientView()
         savedAnyObject = user
         titleLabel.text = "\(user.firstName) \(user.lastName)"
 
-        network.getImage(imageUrl: user.photo200Orig) { [weak self] result in
+        network.getImage(imageUrl: user.photo) { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .failure(let error):
@@ -82,11 +82,11 @@ final class UniversalCell: UITableViewCell {
     }
 
 
-    func configure(group: Group) {
+    func configure(group: GroupRealm) {
         gradientView()
         savedAnyObject = group
         titleLabel.text = group.name
-        network.getImage(imageUrl: group.photo200) { [weak self] result in
+        network.getImage(imageUrl: group.photo) { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .failure(let error):

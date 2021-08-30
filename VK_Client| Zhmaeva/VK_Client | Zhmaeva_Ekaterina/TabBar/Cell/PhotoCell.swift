@@ -42,9 +42,8 @@ final class PhotoCell: UICollectionViewCell {
     
     // MARK: Configure cell
 
-    func configure(image: Photo) {
-        var sizes = image.sizes
-        sizes.sort { a, b in
+    func configure(image: PhotoRealm) {
+        let sizes = image.sizes.sorted { a, b in
             return b.width - a.width > 0
         }
 

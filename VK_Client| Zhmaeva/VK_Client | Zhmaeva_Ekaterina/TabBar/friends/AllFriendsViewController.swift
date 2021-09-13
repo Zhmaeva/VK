@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 // MARK: - AllFriendsViewController
 
 final class AllFriendsViewController: UIViewController {
@@ -18,6 +18,7 @@ final class AllFriendsViewController: UIViewController {
 
     var personsArray = [UserRealm]()
     var searchResultArray = [UserRealm]()
+    var token: NotificationToken?
 
     // MARK: - Private propertys
 
@@ -26,6 +27,22 @@ final class AllFriendsViewController: UIViewController {
     private let dataManger = DataManager()
 
     // MARK: - Public methods
+
+    func realmNotifications() {
+        let realm = try! Realm()
+        let friends = realm.objects(UserRealm.self)
+        token = friends.observe{ changes in
+            switch changes {
+                case .initial(let results):
+                    print(results)
+                case let .update(results, deletions, insertions, modifications):
+                    print(results, "The object was deleted \(deletions)", insertions, modifications)
+                case .error(let error):
+                    print("An error occurred: \(error).")
+            }
+            print("Данные изменились")
+        }
+    }
 
     func configure() {
     }
@@ -59,8 +76,9 @@ final class AllFriendsViewController: UIViewController {
         searchFriends.delegate = self
 
         loadData()
-    }
+        realmNotifications()
 
+    }
 }
 
 // MARK: - UISearchBarDelegate

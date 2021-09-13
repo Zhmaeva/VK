@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 //MARK: - AllGroupsViewController
 
@@ -21,8 +22,25 @@ final class AllGroupsViewController: UIViewController {
     private var allGroupArray = [GroupRealm]()
     private var searchGroupArray = [GroupRealm]()
     private let groupsClient = DataManager()
+    private var token: NotificationToken?
 
     // MARK: Private methods
+
+    private func realmNotifications() {
+        let realm = try! Realm()
+        let groups = realm.objects(GroupRealm.self)
+        token = groups.observe{ changes in
+            switch changes {
+                case .initial(let results):
+                    print(results)
+                case let .update(results, deletions, insertions, modifications):
+                    print(results, deletions, insertions, modifications)
+                case .error(let error):
+                    print(error)
+            }
+            print("Данные изменились")
+        }
+    }
 
     private func loadGroups() {
         groupsClient.getUserGroups { [weak self] result in
@@ -79,6 +97,7 @@ final class AllGroupsViewController: UIViewController {
         searchBarAllGroups.delegate = self
 
         loadGroups()
+        realmNotifications()
     }
 
 }

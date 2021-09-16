@@ -16,20 +16,38 @@ class HomeTableViewController: UITableViewController {
     let reuseIdentifierHomeTableViewController = "reuseIdentifierHomeTableViewController"
     
     var news = [News]()
+    private let client = VkClient()
     
-    func onUpdateNews(news: News) {
-        self.news = updateNews(news: news)
-        view.backgroundColor = #colorLiteral(red: 0.771590054, green: 0.7699093819, blue: 0.9986669421, alpha: 1)
-        newsTableView.reloadData()
-    }
+//    func onUpdateNews(news: News) {
+//        self.news = updateNews(news: news)
+//        view.backgroundColor = #colorLiteral(red: 0.771590054, green: 0.7699093819, blue: 0.9986669421, alpha: 1)
+//        newsTableView.reloadData()
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.news = getNews()
+       // self.news = getNews()
         
         newsTableView.delegate = self
         newsTableView.dataSource = self
+
+        loadData()
+    }
+
+    func loadData() {
+        client.getNews { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let news):
+                    self.news = news
+                    DispatchQueue.main.async {
+                        self.newsTableView.reloadData()
+                    }
+            }
+        }
     }
     
     // MARK: - Table view data source
@@ -48,7 +66,7 @@ class HomeTableViewController: UITableViewController {
         guard let cell = newsTableView.dequeueReusableCell(withIdentifier: "reuseIdentifierHomeTableViewController", for: indexPath) as? HomeTableViewCell else {return UITableViewCell()}
         
         // Configure the cell
-        cell.configure(news: news[indexPath.item], onUpdate: self.onUpdateNews)
+        cell.configure(news: news[indexPath.item])
         
         return cell
     }

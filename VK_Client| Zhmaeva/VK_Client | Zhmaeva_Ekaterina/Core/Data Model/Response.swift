@@ -15,4 +15,7 @@ struct Response<T: Decodable>: Decodable {
 
 struct ResponseWrapper<T: Decodable>: Decodable {
     let items: [T]
+    let profiles: [T]?
+    let groups: [T]?
 }
+

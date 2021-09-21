@@ -24,13 +24,9 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var backViewComments: UIView!
     @IBOutlet weak var commentsImage: UIImageView!
     @IBOutlet weak var commentsCount: UILabel!
-    
-    
-    typealias UpdateCallback = (_ news: News)  -> Void
-    
-    var news: News? = Optional.none
-    var onUpdate: UpdateCallback? = Optional.none
-    
+
+    let network = NetworkLayer()
+
     func setup() {
         backViewPhoto.layer.cornerRadius = 50
         photoFriendsAndGroups.layer.cornerRadius = 50
@@ -60,40 +56,15 @@ class HomeTableViewCell: UITableViewCell {
     }
 
     
-    func configure(news: News, onUpdate: @escaping UpdateCallback) {
-        titleOrName.text = news.title
-        descriptionNews.text = news.description
-        photoFriendsAndGroups.image = news.avatar
-        fullPhotoFriendOrGroup.image = news.photo
-        commentsCount.text = String(news.comments)
-        heartRed.image = news.hasMyLike ? UIImage(named: "heart_fill") : UIImage(named: "heart_empty")
-        likeCount.text = String(news.likes)
-        
-        self.news = news
-        self.onUpdate = onUpdate
+    func configure(news: News) {
+        titleOrName.text = news.text
+
     }
     
     
     @IBAction func clickLikeButton(_ sender: Any) {
-        guard var item = news else {
-            return
-        }
-        
-        guard let callback = onUpdate else {
-            return
-        }
-
-        if(item.hasMyLike) {
-            item.dislike()
-        } else {
-            item.like()
-            animateHeart()
-        }
-        
-        callback(item)
     }
     
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

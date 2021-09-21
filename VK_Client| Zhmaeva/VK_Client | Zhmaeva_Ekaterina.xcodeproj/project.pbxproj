@@ -38,7 +38,6 @@
 		C1A200B726C527D1009410DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200A826C527D1009410DB /* SceneDelegate.swift */; };
 		C1A200B826C527D1009410DB /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AA26C527D1009410DB /* Session.swift */; };
 		C1A200B926C527D1009410DB /* VkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AB26C527D1009410DB /* VkClient.swift */; };
-		C1A200BC26C527D1009410DB /* NewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200AF26C527D1009410DB /* NewsDataSource.swift */; };
 		C1A200BD26C527D1009410DB /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B126C527D1009410DB /* NetworkLayer.swift */; };
 		C1A200BE26C527D1009410DB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B326C527D1009410DB /* User.swift */; };
 		C1A200BF26C527D1009410DB /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A200B426C527D1009410DB /* Group.swift */; };
@@ -82,7 +81,6 @@
 		C1A200A826C527D1009410DB /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C1A200AA26C527D1009410DB /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		C1A200AB26C527D1009410DB /* VkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VkClient.swift; sourceTree = "<group>"; };
-		C1A200AF26C527D1009410DB /* NewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDataSource.swift; sourceTree = "<group>"; };
 		C1A200B126C527D1009410DB /* NetworkLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		C1A200B326C527D1009410DB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C1A200B426C527D1009410DB /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 				C1A200B026C527D1009410DB /* Network layer */,
 				C10438C326D27F7E00C6837C /* DataLayer */,
 				C1A200B226C527D1009410DB /* Data Model */,
-				C1A200AC26C527D1009410DB /* Data Sources */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -286,14 +283,6 @@
 				C1A200AB26C527D1009410DB /* VkClient.swift */,
 			);
 			path = "API layer";
-			sourceTree = "<group>";
-		};
-		C1A200AC26C527D1009410DB /* Data Sources */ = {
-			isa = PBXGroup;
-			children = (
-				C1A200AF26C527D1009410DB /* NewsDataSource.swift */,
-			);
-			path = "Data Sources";
 			sourceTree = "<group>";
 		};
 		C1A200B026C527D1009410DB /* Network layer */ = {
@@ -443,7 +432,6 @@
 				C1A200C026C527D1009410DB /* News.swift in Sources */,
 				C10438C226D26DC900C6837C /* PhotoSizesRealm.swift in Sources */,
 				C100A82E269AFF50007E68B4 /* animationLoginPage.swift in Sources */,
-				C1A200BC26C527D1009410DB /* NewsDataSource.swift in Sources */,
 				C1A200B626C527D1009410DB /* AppDelegate.swift in Sources */,
 				C138D5EF268DD3EC00D6B495 /* HomeTableViewCell.swift in Sources */,
 				C10438C026D26A9000C6837C /* PhotoRealm.swift in Sources */,

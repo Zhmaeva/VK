@@ -32,7 +32,8 @@ final class VkClient {
             URLQueryItem(name: "client_id", value: "7923746"),
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "display", value: "mobile"),
-            URLQueryItem(name: "scope", value: "262150"),
+            //URLQueryItem(name: "scope", value: "262150"),
+            URLQueryItem(name: "scope", value: "friends, photos, wall, groups, notes"),
             URLQueryItem(name: "response_type", value: "token"),
             URLQueryItem(name: "v", value: version)
         ]
@@ -112,6 +113,23 @@ final class VkClient {
             URLQueryItem(name: "type", value: "group"),
             URLQueryItem(name: "sort", value: "0"),
             URLQueryItem(name: "photo_sizes", value: "1")
+        ]
+        guard let url = urlComponents.url else { return }
+
+        network.sendRequest(url: url, complition: complition)
+    }
+
+    func getNews(complition: @escaping(Result<[News], Error>) -> Void) {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.vk.com"
+        urlComponents.path = "/method/newsfeed.get"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "access_token", value: Session.shared.token),
+            URLQueryItem(name: "v", value: version),
+            URLQueryItem(name: "count", value: "15"),
+            URLQueryItem(name: "filters", value: "post, photo, note"),
+            URLQueryItem(name: "fields", value: "name, nickname, photo_200, photo_200_orig")
         ]
         guard let url = urlComponents.url else { return }
 

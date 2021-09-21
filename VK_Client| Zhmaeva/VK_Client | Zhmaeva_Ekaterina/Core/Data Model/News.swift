@@ -9,35 +9,46 @@
 import UIKit
 
 
-struct News {
-    let id: Int
-    let avatar: UIImage!
-    let title: String!
-    let description: String
-    let photo: UIImage!
-    var likes: Int
-    let comments: Int
-    var hasMyLike: Bool
-    
-    init(id: Int, avatar: UIImage?, title: String?, description: String, photo: UIImage?, likes: Int, comments: Int) {
-        self.id = id
-        self.avatar = avatar
-        self.title = title
-        self.description = description
-        self.photo = photo
-        self.likes = likes
-        self.comments = comments
-        self.hasMyLike = false
-    }
-    
-    mutating func like() {
-        self.hasMyLike = true
-        self.likes+=1
-    }
-    
-    mutating func dislike() {
-        self.hasMyLike = false
-        self.likes-=1
-    }
+struct News: Decodable {
+    let source_id: Int
+    let date: Int
+    let type: String
+    let post_type: String
+    let post_id: Int
+    let text: String
+    let attachments: [Attachments]?
+    let photos: [Photos]?
+    let post_source: [PostSource]
+    let comments: [Comments]
+    let likes: [Likes]
+    let views: [Views]
 }
 
+struct Attachments: Decodable {
+    let type: String
+    let photo: [Photo]
+}
+
+struct Photos: Decodable {
+    let items: [Photo]
+}
+
+struct PostSource: Decodable {
+    let type: String
+}
+
+struct Comments: Decodable {
+    let count: Int
+    let can_post: Int
+}
+
+struct Likes: Decodable {
+    let count: Int
+    let user_likes: Int
+    let can_like: Int
+    let can_publish: Int
+}
+
+struct Views: Decodable {
+    let count: Int
+}

@@ -17,6 +17,7 @@ final class DataManager {
     private let expirationTime = 10.0
     private var friedsLastRequestTime: Date? = nil
     private var groupsLastRequestTime: Date? = nil
+    private var newsLastRequestTime: Date? = nil
 
     //MARK: - Public methods
 
